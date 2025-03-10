@@ -2,8 +2,8 @@
 Fake detection using BERT &amp; smooth pruning 
 
 
-Fake News Detection using BERT with Model Pruning
-Overview
+#Fake News Detection using BERT with Model Pruning
+#Overview
 This repository contains a fake news detection system leveraging BERT (Bidirectional Encoder Representations from Transformers) with optional model pruning for efficiency optimization. The system classifies news articles into "True" or "Fake" categories using deep learning techniques combined with natural language processing (NLP). The implementation includes:
 
 Full BERT model training and evaluation
@@ -14,8 +14,8 @@ Comprehensive performance visualization
 
 Comparative analysis of original vs. pruned models
 
-Key Features
-1. Data Pipeline
+#Key Features
+#1. Data Pipeline
 Dataset Integration: Works with CSV input files (a1_True.csv and a2_Fake.csv)
 
 Text Cleaning: Regular expression-based sanitization
@@ -24,7 +24,7 @@ Stratified Splitting: 70-15-15 train-validation-test split
 
 Class Balancing: Automatic label distribution analysis
 
-2. BERT Implementation
+#2. BERT Implementation
 Hugging Face Integration: Uses bert-base-uncased model
 
 Dynamic Tokenization: Automatic padding/truncation (max length=250 tokens)
@@ -40,80 +40,84 @@ class BERT_Arch(nn.Module):
         self.fc2 = nn.Linear(512, 2)
         self.softmax = nn.LogSoftmax(dim=1)
 
-3. Model Pruning
+#3. Model Pruning
 Smooth Iterative Pruning:
 
-L1 unstructured pruning
+1)L1 unstructured pruning
 
-Configurable rate (default: 20% over 10 iterations)
+2)Configurable rate (default: 20% over 10 iterations)
 
-Gradual weight removal for stability
+3)Gradual weight removal for stability
 
 Pruning Preservation: Permanent weight removal via prune.remove()
 
-4. Evaluation Metrics
-Classification reports (precision/recall/F1-score)
+#4. Evaluation Metrics
+1)Classification reports (precision/recall/F1-score)
 
-Confusion matrix visualization
+2)Confusion matrix visualization
 
-Class distribution analysis
+3)Class distribution analysis
 
-GPU-accelerated inference
+4)GPU-accelerated inference
 
-Installation
-Requirements
-Python 3.7+
+#Installation
+#Requirements
 
-CUDA-compatible GPU (recommended)
+1)Python 3.7+
 
-PyTorch 1.8+
+2)CUDA-compatible GPU (recommended)
 
-Transformers 4.10+
+3)PyTorch 1.8+
 
-scikit-learn 0.24+
+4)Transformers 4.10+
 
-pandas 1.3+
+5)scikit-learn 0.24+
 
-matplotlib/seaborn
+6)pandas 1.3+
 
-Setup:
+7)matplotlib/seaborn
+
+#Setup:
+
 pip install torch transformers scikit-learn pandas matplotlib seaborn tqdm
 
 
-Usage
-Data Preparation
-Place input files in project root:
+#Usage
+#Data Preparation
+
+1)Place input files in project root:
 
 a1_True.csv
-
 a2_Fake.csv
 
-Run preprocessing:
-# Automatic text cleaning and label conversion
+2)Run preprocessing:
+
+Automatic text cleaning and label conversion:
 data['text'] = data['text'].apply(clean_text)
 data['label'] = data['Target'].map({'True': 0, 'Fake': 1})
 
-Model Training:
+#Model Training:
+
 python train_bert.py
 
-Outputs: c3_new_model_weights.pt
+- Outputs: c3_new_model_weights.pt
 
-Pruning Execution:
+#Pruning Execution:
 
 python prune_model.py
 
-Outputs: pruned_model_weights.pt
+- Outputs: pruned_model_weights.pt
 
-Performance Evaluation:
+# Performance Evaluation:
 
-# Original model
+- Original model
 python evaluate_original.py
 
-# Pruned model 
+- Pruned model 
 python evaluate_pruned.py
 
-Results
-Baseline Performance
+#Results
+#Baseline Performance
 Class	Precision	Recall	F1-Score
 True	0.97	0.96	0.96
 Fake	0.96	0.97	0.97
@@ -122,7 +126,8 @@ Class	Precision	Recall	F1-Score
 True	0.96	0.95	0.95
 Fake	0.95	0.96	0.96
 
-Pruning Methodology
+#Pruning Methodology
+
 The smooth pruning approach gradually removes network weights through multiple iterations:
 
 def smooth_pruning(model, pruning_rate=0.2, pruning_steps=10):
@@ -132,15 +137,15 @@ def smooth_pruning(model, pruning_rate=0.2, pruning_steps=10):
     # Permanent parameter removal
     prune.remove(module, 'weight')
 
-Benefits:
+#Benefits:
 
-18.7% reduction in model size
+1)18.7% reduction in model size
 
-2.4x inference speedup
+2)2.4x inference speedup
 
-<1% accuracy drop
+3)<1% accuracy drop
 
-Directory Structure
+#Directory Structure
 
 .
 ├── data/                   # Input datasets
@@ -155,22 +160,22 @@ Directory Structure
 ├── evaluate_*.py           # Evaluation scripts
 └── requirements.txt        # Dependency list
 
-Conclusion
-This implementation demonstrates:
+#Conclusion
+#This implementation demonstrates:
 
-Effective fake news detection using BERT (98% baseline accuracy)
+1)Effective fake news detection using BERT (98% baseline accuracy)
 
-Successful model compression via smooth pruning
+2)Successful model compression via smooth pruning
 
-Minimal performance degradation post-optimization
+3)Minimal performance degradation post-optimization
 
 The system provides a practical balance between computational efficiency and classification performance, suitable for real-world deployment scenarios.
 
-Future Work
-Quantization-aware training
+#Future Work
+1)Quantization-aware training
 
-Knowledge distillation
+2)Knowledge distillation
 
-Multi-lingual support
+3)Multi-lingual support
 
-Deployment optimization with ONNX/TensorRT
+4)Deployment optimization with ONNX/TensorRT
