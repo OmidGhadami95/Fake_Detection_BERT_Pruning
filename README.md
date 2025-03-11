@@ -164,4 +164,4 @@ The system provides a practical balance between computational efficiency and cla
 
 3) Multi-lingual support
 
-4)Deployment optimization with ONNX/TensorRT
+4) Deployment optimization with ONNX/TensorRT
