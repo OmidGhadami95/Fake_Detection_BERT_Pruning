@@ -145,20 +145,6 @@ def smooth_pruning(model, pruning_rate=0.2, pruning_steps=10):
 
 3) <1% accuracy drop
 
-# Directory Structure
-
-.
-├── data/                   # Input datasets
-├── outputs/                # Generated visualizations
-│   ├── confusion_matrix.pdf
-│   └── classification_report.pdf
-├── models/                 # Model weights
-│   ├── c3_new_model_weights.pt
-│   └── pruned_model_weights.pt
-├── train_bert.py           # Training script
-├── prune_model.py          # Pruning implementation
-├── evaluate_*.py           # Evaluation scripts
-└── requirements.txt        # Dependency list
 
 # Conclusion
 # This implementation demonstrates:
