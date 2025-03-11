@@ -6,7 +6,7 @@ Fake detection using BERT &amp; smooth pruning
 # Overview
 This repository contains a fake news detection system leveraging BERT (Bidirectional Encoder Representations from Transformers) with optional model pruning for efficiency optimization. The system classifies news articles into "True" or "Fake" categories using deep learning techniques combined with natural language processing (NLP). The implementation includes:
 
-Full BERT model training and evaluation
+Full BERT model fine-tuning and evaluation
 
 Smooth iterative magnitude pruning for model optimization
 
